@@ -1,0 +1,62 @@
+the features:-
+
+
+	- last x journeys, upto 20, last 3 journeys would always be on display, after that its upto user if he/she wants to see more
+	> can be achieved with directly querying and altering the query field to display different amounts
+
+	
+	- card recharge history would be shown on user demand, othersise only card balans will show, unique to each user, only stores upto last 100 recharges
+	> user would only be able to recharge through our payment gateway portal, every payment he/she would make it would get stored into the database with the 	  recharge amount (the database fields should include total amount, recharge amount, user id, date, time)
+
+
+	- user profile (each card would have its own profile, uid, name, mobile no.)
+	> this wouldn't be stored in the database, its only here for identification of the user
+
+
+	- adding members should allow the user to see who they are adding/ entrusted people system
+	----IDEA 1----
+
+	> two fields in the search bar, the name of the person, and if there are multiple people, also allow input of phone number to find the correct person
+	> there should be a taxied field in the database which would show if a person had someone else with him and paid for it, for the person taxing it should show 	  the
+	  "number of people taxied" and price charged for each one (which would be same for each one), and the person gettin taxied would have the travel history shown 	  but price charged shall be 0, and in the taxied column it would show "yes", price charged would be 0 but the travel amount for the distance travelled shall 	  be shown, if there are no people taxied it should simple show "no".
+  	  
+	----IDEA 2-----
+
+	> make an entrusted people system, with this system user would be able to add people onto the list ezily, sort of like frndlist, that way we wont have to query 	  through the entire list and only through the frndlist, making querying way faster, this can also be used for taxying, a person would be frnded on both sides
+	  also makes implementation of knowing bus live location with regards to the user ez
+
+
+	- transaction history, shows all the transactions taken place with the card so far
+	> should have the columns (amount recharged, amount deducted, amount left, date), clicking on the respective row should give all the details of that days 	  travels
+	
+
+	- live location of bus
+	> inbuilt through bus scanner system, it will send live coords to the website when asked, users should be able to add some entrusted people onto their website 	  who will be able to see the user's location/know if they are onboarded on bus or not
+
+
+	- know which buses will pass through the user's location, onto the location where user wants to go
+	> since the bus will pass through fixed paths, the paths shall be fixed with the buses' number in the db, so whenever a user inputs the location of wherever
+	  he wants to go, the query will automatically sort out the buses with those entry and exits, or atleast if they are going on the path same as the one user 	  entered, and after finding which buses will pass through their, we can ezily query the current location of those buses, the the buses which have already 	  crossed the point of no return shall be removed and only the buses which are gonna arrive will be displayed in order of their earliest time of arrival
+	-----IDEA 1-----
+	
+	> interpolation of the expected route bus would take, we can create zones aorund the users specified location and find buses passing through their with the 	  help of interpolation, we can also specifiy intermediate points in the bus routes, (too complex istfg)
+	
+	-----IDEA 2-----
+
+	> implement external apis which would show what routes the bus would take based on the starting and ending points only, take that route data, and perform the 	  geospatial query
+
+	> here's a cool ass interpretation of how this would actually show up on the website, theres a gui interface on the website, user will input the starting and 	  ending points, then he will decide if he wants to find the buses within a zone or on the exact points, this can be implemented through the same gui interface
+	  a query would be sent to the api (yes ik there's the issue of query times since there would be a lot of fucking buses, we can implement caching, parallel 	  queries into the api and asynchronous which would show what buses are passing through the routes which is visible on their screen, helping reduce the qeury 	  times BY ALOT (i will think more on this later dunnno man, pein)),the api will return the buses which are in a close proximity to user's path or are gonna 	  pass through his locaiton and show it on a map/gui interface, the zoning ability should be also be implemented into the zoom system :)))
+
+	
+	- request new card
+
+
+	- popular places to visit near the users current location
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	FRAMEWORKS
+	
+	- tailwind, mongodb, nodejs,turfjs, core (js,css,html), python algo for dist calc, scripts for various tasks to be performed on db
